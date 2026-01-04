@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
+        <title>VizForge</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#get-started">Get Started</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="homeslide" class="card slide active-slide">
+            <h2>Welcome to VizForge</h2>
+            <p>Your ultimate tool for data visualization and analysis.</p>
+        </div>
+
+        <div id="aboutslide" class="card slide">
+            <h2>About VizForge</h2>
+            <p>VizForge is designed to help you create stunning visualizations from your data with ease.</p>
+        </div>
+
+        <div id="get-startedslide" class="card slide">
+            <h2>Get Started with VizForge</h2>
+            <p>Ready to create your first visualization? Click the button below to begin!</p>
+            <button class="btn btn-primary">Start Now</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 VizForge. All rights reserved.</p>
+        </footer>
+
+        <script>
+            const slides = document.querySelectorAll('.slide');
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active-slide', i === index);
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            setInterval(nextSlide, 3000);
+        </script>
+    </body>
+</html>
