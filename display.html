@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>VizForge - Display</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5"></script>
+</head>
+<body>
+    <div class="visualization-section">
+        <div class="header-controls">
+            <h2 id="chartTitle">Data Visualization</h2>
+            <button class="back-btn" onclick="window.location.href='input.html'">← Back to Input</button>
+        </div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script type="module">
+        import { renderFromData } from './core/engine.js';
+        
+        // Get data from sessionStorage
+        const csvData = sessionStorage.getItem('csvData');
+        const chartType = sessionStorage.getItem('chartType');
+        const xAxis = sessionStorage.getItem('xAxis');
+        const yAxis = sessionStorage.getItem('yAxis');
+        const chartTitle = sessionStorage.getItem('chartTitle');
+        
+        if (!csvData || !chartType || !xAxis || !yAxis) {
+            alert('Missing visualization data. Redirecting to input page.');
+            window.location.href = 'input.html';
+        } else {
+            // Set title if provided
+            if (chartTitle) {
+                document.getElementById('chartTitle').textContent = chartTitle;
+            }
+            
+            // Parse CSV and render
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    renderFromData(results.data, chartType, {
+                        target: 'myChart',
+                        x: xAxis,
+                        y: yAxis
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>

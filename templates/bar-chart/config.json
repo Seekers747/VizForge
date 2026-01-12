@@ -1,0 +1,5 @@
+{
+  "name": "Bar Chart",
+  "description": "Renders a bar chart from numeric columns",
+  "requiredFields": ["x", "y"]
+}

@@ -1,0 +1,5 @@
+{
+    "name": "Pie Chart",
+    "description": "Renders a pie chart from categorical and numeric columns",
+    "requiredFields": ["x", "y"]
+}
